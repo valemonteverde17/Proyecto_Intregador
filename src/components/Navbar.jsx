@@ -86,12 +86,4 @@ const NAV_ITEMS = [
     label: "Acerca De",
     href: "/about",
   },
-  {
-    label: "Iniciar sesión",
-    href: "/signin",
-  },
-  {
-    label: "Registro",
-    href: "/signup",
-  },
 ];

@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import GeneralLayout from "../components/GeneralLayout";
 
 function Home() {
-  return (
-    <div>Home</div>
-  )
+  return <GeneralLayout>Contenido del feed</GeneralLayout>;
 }
 
-export default Home
+export default Home;
