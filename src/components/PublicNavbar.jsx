@@ -1,7 +1,7 @@
 import { Box, Flex, Text, Button, Stack, HStack } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 
-export default function Navbar() {
+export default function PublicNavbar() {
   return (
     <Box>
       <Flex
@@ -84,13 +84,4 @@ const DesktopNav = () => {
   );
 };
 
-const NAV_ITEMS = [
-  {
-    label: "Home",
-    href: "/",
-  },
-  {
-    label: "Acerca De",
-    href: "/about",
-  },
-];
+const NAV_ITEMS = [];

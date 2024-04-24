@@ -6,20 +6,24 @@ import SignUp from "./views/SignUp";
 import Page404 from "./views/others/Page404";
 import Page500 from "./views/others/Page500";
 import Navbar from "./components/Navbar";
+import Profile from "./views/Profile";
+import EditProfile from "./views/EditProfile";
 
 function App() {
   return (
-  <>
-  <Navbar/>
-    <Routes>
-      <Route path="/" element = {<Home />} />
-      <Route path="/about" element = {<About />} />
-      <Route path="/signin" element = {<SignIn />} />
-      <Route path="/signup" element = {<SignUp />} />
-      <Route path="/*" element = {<Page404 />} />
-      <Route path="/*" element = {<Page500 />} />
-    </Routes>
-  </>
+    <>
+      {/* <Navbar /> */}
+      <Routes>
+        <Route path="/about" element={<About />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/edit" element={<EditProfile />} />
+        <Route path="/*" element={<Page404 />} />
+        {/* <Route path="/*" element = {<Page500 />} /> */}
+      </Routes>
+    </>
   );
 }
 

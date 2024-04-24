@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import RootLayout from "../components/RootLayout";
 
 function About() {
   return (
-    <div>About</div>
-  )
+    <RootLayout>
+      <div>About</div>
+    </RootLayout>
+  );
 }
 
-export default About
+export default About;

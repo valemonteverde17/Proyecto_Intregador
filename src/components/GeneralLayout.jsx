@@ -13,17 +13,17 @@ function GeneralLayout({ children }) {
       h="200px"
       gap="4"
     >
-      <GridItem pl="2" area={"header"}>
+      <GridItem area={"header"}>
         <Navbar />
       </GridItem>
       <GridItem pl="2" bg="pink.300" area={"nav"}>
-        Sidebar
+        Sidebar Colocar aqui el componente sidebar cuando este terminado
       </GridItem>
       <GridItem pl="2" area={"main"}>
         {children}
       </GridItem>
       <GridItem pl="2" bg="blue.300" area={"footer"}>
-        Footer
+        Colocar aqui el Footer
       </GridItem>
     </Grid>
   );

@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import RootLayout from "../components/RootLayout";
 
 function SignIn() {
   return (
-    <div>SignIn</div>
-  )
+    <RootLayout>
+      <div>SignIn</div>
+    </RootLayout>
+  );
 }
 
-export default SignIn
+export default SignIn;
