@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar";
+import Sidebar from "./Sidebar";
 import { Grid, GridItem } from "@chakra-ui/react";
 
 function GeneralLayout({ children }) {
@@ -16,8 +17,8 @@ function GeneralLayout({ children }) {
       <GridItem area={"header"}>
         <Navbar />
       </GridItem>
-      <GridItem pl="2" bg="pink.300" area={"nav"}>
-        Sidebar Colocar aqui el componente sidebar cuando este terminado
+      <GridItem pl="2" area={"nav center"}>
+        <Sidebar />
       </GridItem>
       <GridItem pl="2" area={"main"}>
         {children}
