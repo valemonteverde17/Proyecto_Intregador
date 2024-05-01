@@ -15,17 +15,24 @@ import Protected from './components/Protected';
 
 function App() {
   const [userAuth, setUserAuth] = useState(null);
+  const [loading, setLoading] = useState(true);
   const auth = getAuth(app);
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setUserAuth(user.email);
-        console.log(user);
+        console.log("Usuario autenticado:", user);
       } else {
-        console.log("Favor de volverse a autenticar");
+        setUserAuth(null);
+        console.log("No hay usuario autenticado");
       }
+      setLoading(false);
     });
   }, []);
+
+  if (loading) {
+    return <div>Cargando...</div>;
+  }
 
   return (
     <>
@@ -35,11 +42,11 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/*" element={<Page404 />} />
         <Route path="/about" element={<About />} />
-        <Route element={<Protected isActive={!userAuth} />}></Route>
-        <Route path="/" element={<Home />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/edit" element={<EditProfile />} />
-
+        <Route element={<Protected isActive={!userAuth} />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/edit" element={<EditProfile />} />
+        </Route>
         {/* <Route path="/*" element = {<Page500 />} /> */}
       </Routes>
     </>

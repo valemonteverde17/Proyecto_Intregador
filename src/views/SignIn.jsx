@@ -1,11 +1,11 @@
-import { Box, Button, Card, Input } from '@chakra-ui/react'
+import { Box, Button, Input } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import app from '../../firebase-config';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import RootLayout from "../components/RootLayout";
 
-function Login() {
+function SignIn() {
   const navigate = useNavigate();
   const auth = getAuth(app);
   const [email, setEmail] = useState("");
@@ -30,14 +30,14 @@ function Login() {
         h={"700"}
         justifyContent={"center"}
         alignItems={"center"}>
-        <Card>
-          <Input placeholder="Usuario" onChange={(e) => setEmail(e.target.value)}></Input>
-          <Input placeholder="Contraseña" onChange={(e) => setPassword(e.target.value)}></Input>
-          <Button onClick={handleLogin}>Registrar</Button>
-        </Card>
+        <Box>
+            <Input placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <Input placeholder="Contraseña" type="password" value={password} onChange={(e) => setPassword(e.target.value)} mt={4} />
+            <Button onClick={handleLogin} borderRadius={30} bgColor="#FF3F00AA">Registrar</Button>
+        </Box>
       </Box>
     </>
   )
 }
 
-export default Login
+export default SignIn
