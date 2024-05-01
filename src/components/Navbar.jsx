@@ -1,4 +1,4 @@
-import { Box, Flex, Text, Button, Stack, HStack } from "@chakra-ui/react";
+import { Box, Flex, Text, Button, Stack, HStack, Image } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
@@ -12,11 +12,15 @@ export default function Navbar() {
         px={4}
         align={"center"}
       >
+        <Image
+  borderRadius='full'
+  boxSize='30px'
+  src='/public/Logo.jpeg'
+  alt='Dan Abramov'
+/>
         <Flex flex={1} justify={"start"}>
           {/* Para colocar un logo*/}
-          <Text textAlign={{ base: "center", md: "left" }} color={"white"}>
-            Logo
-          </Text>
+          
           {/* Para los NavLinks*/}
           <Flex display={"flex"} ml={10}>
             <DesktopNav />

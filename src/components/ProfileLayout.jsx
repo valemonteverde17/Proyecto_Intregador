@@ -56,7 +56,9 @@ function ProfileLayout({
           <MButton>{noAmigos} Amigos</MButton>
           <MButton>{grupo}</MButton>
         </HStack>
+        
       </Flex>
+      
       <Box bg="blue" p={4} mt={4}>
         {children}
       </Box>
