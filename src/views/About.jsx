@@ -1,5 +1,5 @@
 import React from "react";
-import RootLayout from "../components/RootLayout";
+import RootLayout from "../components/layouts/RootLayout";
 
 function About() {
   return (

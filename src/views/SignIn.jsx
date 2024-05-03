@@ -1,9 +1,9 @@
-import { Box, Button, Input } from '@chakra-ui/react'
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import app from '../../firebase-config';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import RootLayout from "../components/RootLayout";
+import { Box, Button, Input } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import app from "../../firebase-config";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import RootLayout from "../components/layouts/RootLayout";
 
 function SignIn() {
   const navigate = useNavigate();
@@ -21,23 +21,37 @@ function SignIn() {
   };
   return (
     <>
-      <RootLayout>
-      </RootLayout>
-      <Box px={60} backgroundSize={"cover"}
+      <RootLayout></RootLayout>
+      <Box
+        px={60}
+        backgroundSize={"cover"}
         backgroundPosition={"center"}
         display={"flex"}
         w={"100%"}
         h={"700"}
         justifyContent={"center"}
-        alignItems={"center"}>
+        alignItems={"center"}
+      >
         <Box>
-            <Input placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <Input placeholder="Contraseña" type="password" value={password} onChange={(e) => setPassword(e.target.value)} mt={4} />
-            <Button onClick={handleLogin} borderRadius={30} bgColor="#FF3F00AA">Registrar</Button>
+          <Input
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <Input
+            placeholder="Contraseña"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            mt={4}
+          />
+          <Button onClick={handleLogin} borderRadius={30} bgColor="#FF3F00AA">
+            Iniciar sesión
+          </Button>
         </Box>
       </Box>
     </>
-  )
+  );
 }
 
-export default SignIn
+export default SignIn;

@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import { Route, Routes } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./views/Home";
 import About from "./views/About";
 import SignIn from "./views/SignIn";
 import SignUp from "./views/SignUp";
 import Page404 from "./views/others/Page404";
 import Page500 from "./views/others/Page500";
-import Navbar from "./components/Navbar";
 import Profile from "./views/Profile";
 import EditProfile from "./views/EditProfile";
-import app from '../firebase-config';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import Protected from './components/Protected';
+import app from "../firebase-config";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import Protected from "./components/Protected";
 
 function App() {
   const [userAuth, setUserAuth] = useState(null);
@@ -36,10 +35,15 @@ function App() {
 
   return (
     <>
-      {/* <Navbar /> */}
       <Routes>
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route
+          path="/signin"
+          element={userAuth ? <Navigate to="/" replace /> : <SignIn />}
+        />
+        <Route
+          path="/signup"
+          element={userAuth ? <Navigate to="/" replace /> : <SignUp />}
+        />
         <Route path="/*" element={<Page404 />} />
         <Route path="/about" element={<About />} />
         <Route element={<Protected isActive={!userAuth} />}>

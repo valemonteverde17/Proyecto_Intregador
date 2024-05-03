@@ -1,5 +1,5 @@
 import React from "react";
-import ProfileLayout from "../components/ProfileLayout";
+import ProfileLayout from "../components/layouts/ProfileLayout";
 import { Text, Box, Button } from "@chakra-ui/react";
 import { getAuth, signOut } from "firebase/auth";
 import app from "../../firebase-config";
@@ -8,11 +8,13 @@ function Profile() {
   const auth = getAuth(app);
 
   const handleSignOut = () => {
-    signOut(auth).then(() => {
-      console.log("Sesión cerrada exitosamente");
-    }).catch((error) => {
-      console.error("Error al cerrar sesión", error);
-    });
+    signOut(auth)
+      .then(() => {
+        console.log("Sesión cerrada exitosamente");
+      })
+      .catch((error) => {
+        console.error("Error al cerrar sesión", error);
+      });
   };
 
   return (
@@ -26,7 +28,9 @@ function Profile() {
     >
       <Text>Hola mundo</Text>
       <Box mt={4}>
-        <Button onClick={handleSignOut} borderRadius={30} bgColor="#FF3F00AA">Cerrar Sesion</Button>
+        <Button onClick={handleSignOut} borderRadius={30} bgColor="#FF3F00AA">
+          Cerrar Sesion
+        </Button>
       </Box>
     </ProfileLayout>
   );

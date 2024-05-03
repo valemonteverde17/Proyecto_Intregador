@@ -8,8 +8,8 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
-import Navbar from "./Navbar";
-import MButton from "./ui-elements/MButton";
+import Navbar from "../Navbar";
+import MButton from "../ui-elements/MButton";
 
 function ProfileLayout({
   children,
@@ -56,9 +56,8 @@ function ProfileLayout({
           <MButton>{noAmigos} Amigos</MButton>
           <MButton>{grupo}</MButton>
         </HStack>
-        
       </Flex>
-      
+
       <Box bg="blue" p={4} mt={4}>
         {children}
       </Box>
