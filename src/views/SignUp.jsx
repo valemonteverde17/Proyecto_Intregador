@@ -22,7 +22,7 @@ function SignUp() {
           duration: 9000,
           isClosable: true,
         });
-        navigate("/");
+        navigate("/home");
       })
       .catch((error) => {
         toast({

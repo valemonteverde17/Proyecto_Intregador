@@ -30,7 +30,7 @@ export default function Navbar() {
         ? [
             {
               label: "Home",
-              href: "/",
+              href: "/home",
             },
             {
               label: "Acerca De",

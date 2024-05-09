@@ -38,16 +38,16 @@ function App() {
       <Routes>
         <Route
           path="/signin"
-          element={userAuth ? <Navigate to="/" replace /> : <SignIn />}
+          element={userAuth ? <Navigate to="/home" replace /> : <SignIn />}
         />
         <Route
           path="/signup"
-          element={userAuth ? <Navigate to="/" replace /> : <SignUp />}
+          element={userAuth ? <Navigate to="/home" replace /> : <SignUp />}
         />
         <Route path="/*" element={<Page404 />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/about" element={<About userAuth={userAuth} />} />
         <Route element={<Protected isActive={!userAuth} />}>
-          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/edit" element={<EditProfile />} />
         </Route>
