@@ -1,8 +1,20 @@
 import { Avatar, Box, Flex, VStack } from "@chakra-ui/react";
 import React from "react";
 import MButton from "./ui-elements/MButton";
+import { getAuth, signOut } from "firebase/auth";
+import app from "../../firebase-config";
 
 function Sidebar({ avatar }) {
+  const auth = getAuth(app);
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        console.log("Sesión cerrada exitosamente");
+      })
+      .catch((error) => {
+        console.error("Error al cerrar sesión", error);
+      });
+  };
   return (
     <Box>
       <Flex
@@ -16,11 +28,11 @@ function Sidebar({ avatar }) {
       >
         <Avatar size="lg" src={avatar && avatar} />
         <VStack>
-          <MButton>Perfil</MButton>
-          <MButton>Amigos</MButton>
-          <MButton>Grupo</MButton>
-          <Box py={55}>
-            <MButton>Cerrar sesión</MButton>
+          <MButton w={125} m="2">Perfil</MButton>
+          <MButton w={125}m="1">Amigos</MButton>
+          <MButton w={125}m="2">Grupo</MButton>
+          <Box py={55} marginTop={"100%"}>
+            <MButton onClick={handleSignOut} borderRadius={30} bgColor="#FF3F00AA">Cerrar sesión</MButton>
           </Box>
         </VStack>
       </Flex>

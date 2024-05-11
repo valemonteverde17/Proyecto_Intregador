@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Box, Input, useToast, Button } from "@chakra-ui/react";
+import { Box, Input, useToast, Button, Flex, Text } from "@chakra-ui/react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import app from "../../firebase-config";
 import RootLayout from "../components/layouts/RootLayout";
 
@@ -37,29 +38,43 @@ function SignUp() {
 
   return (
     <RootLayout>
+      <Flex height="92vh" align={"center"} justifyContent="center">
       <Box
         display="flex"
         flexDirection="column"
         alignItems="center"
-        justifyContent="center"
-        p={5}
+        border="2px" borderColor="gray.200" p={4} rounded="md" w={"30%"}
       >
+        <Text fontSize="5xl" fontWeight="extrabold"  mb={4}> Registro</Text>
         <Input
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          mt={5}
         />
         <Input
           placeholder="Contraseña"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          mt={4}
+          mt={5}
         />
-        <Button onClick={handleSignUp} borderRadius={30} bgColor="#FF3F00AA">
+        <Box >
+        <Button onClick={handleSignUp} borderRadius={30} bgColor="#FF3F00AA" m={5}>
           Registrarse
         </Button>
+        <Button
+                as={NavLink}
+                borderRadius={"30px"}
+                bg={"null"}
+                to={"/signin"}
+                m={5}
+              >
+                Iniciar Sesión
+              </Button>
+        </Box>
       </Box>
+      </Flex>
     </RootLayout>
   );
 }
