@@ -22,6 +22,7 @@ function SignUp() {
           duration: 9000,
           isClosable: true,
         });
+        console.log(userCredential) //para que nos de la informacion del usuario actual
         navigate("/");
       })
       .catch((error) => {
