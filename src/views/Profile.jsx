@@ -21,9 +21,12 @@ function Profile() {
         const apiKey = apiKeyResponse.data.api_key;
 
         // Obtener los posts utilizando la API key
-        const postsResponse = await axios.get("http://localhost:8000/api/muro/", {
-          headers: { Authorization: `Api-Key ${apiKey}` },
-        });
+        const postsResponse = await axios.get(
+          "http://localhost:8000/api/muro/",
+          {
+            headers: { Authorization: `Api-Key ${apiKey}` },
+          }
+        );
 
         // Establecer los posts en el estado
         setPosts(postsResponse.data);
@@ -39,7 +42,9 @@ function Profile() {
     // Filtrar las publicaciones del usuario actual
     if (posts.length > 0) {
       const currentUserEmail = auth.currentUser.email;
-      const currentUserPosts = posts.filter(post => post.usuario === currentUserEmail);
+      const currentUserPosts = posts.filter(
+        (post) => post.usuario === currentUserEmail
+      );
       setCurrentUserPosts(currentUserPosts);
     }
   }, [posts, auth.currentUser]);

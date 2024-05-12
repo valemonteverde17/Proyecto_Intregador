@@ -58,7 +58,7 @@ function ProfileLayout({
         </HStack>
       </Flex>
 
-      <Box bg="blue" p={4} mt={4}>
+      <Box p={4} mt={4}>
         {children}
       </Box>
     </Box>
