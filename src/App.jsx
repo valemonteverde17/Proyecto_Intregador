@@ -11,6 +11,7 @@ import EditProfile from "./views/EditProfile";
 import app from "../firebase-config";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Protected from "./components/Protected";
+import Loading from "./components/Loading";
 
 function App() {
   const [userAuth, setUserAuth] = useState(null);
@@ -30,7 +31,7 @@ function App() {
   }, []);
 
   if (loading) {
-    return <div>Cargando...</div>;
+    return <Loading></Loading>
   }
 
   return (
