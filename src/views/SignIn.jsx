@@ -15,7 +15,7 @@ function SignIn() {
       .then((credentials) => {
         const user = credentials.user;
         console.log("Se autenticó con el email", user.email);
-        navigate("/");
+        navigate("/home");
       })
       .catch((error) => alert(error.message));
   };
