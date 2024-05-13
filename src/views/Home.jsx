@@ -52,8 +52,8 @@ function Home() {
   const onClose = () => setIsOpen(false);
   const onOpen = () => setIsOpen(true);
   return (
-    <GeneralLayout>
-      <MButton onClick={onOpen}>Crear nuevo elemento</MButton>
+    <GeneralLayout avatar={auth.currentUser.photoURL}>
+      <MButton onClick={onOpen}>Crear publicación</MButton>
       <MyModal isOpen={isOpen} onClose={onClose} />{" "}
       {/* Pasa isOpen y onClose como props */}
       {!loading ? (

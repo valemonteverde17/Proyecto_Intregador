@@ -4,7 +4,7 @@ import Sidebar from "../Sidebar";
 import Footer from "../Footer";
 import { Grid, GridItem } from "@chakra-ui/react";
 
-function GeneralLayout({ children }) {
+function GeneralLayout({ children, avatar }) {
   return (
     <Grid
       templateAreas={`"header header"
@@ -19,7 +19,7 @@ function GeneralLayout({ children }) {
         <Navbar />
       </GridItem>
       <GridItem pl="2" area={"nav center"}>
-        <Sidebar />
+        <Sidebar avatar={avatar} />
       </GridItem>
       <GridItem pl="2" area={"main"}>
         {children}
