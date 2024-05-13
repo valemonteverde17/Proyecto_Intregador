@@ -57,7 +57,11 @@ function Profile() {
 
   return (
     <ProfileLayout
-      avatar="https://blob.luznoticias.mx/images/2024/04/23/ai-generated-8678087-1280-focus-0-0-966-544.jpg"
+      avatar={
+        auth.currentUser.photoURL
+          ? auth.currentUser.photoURL
+          : "https://bit.ly/broken-link"
+      }
       username={
         auth.currentUser.displayName
           ? auth.currentUser.displayName
@@ -76,6 +80,11 @@ function Profile() {
               <MPost
                 key={post.id}
                 username={post.usuario}
+                avatar={
+                  auth.currentUser.photoURL
+                    ? auth.currentUser.photoURL
+                    : "https://bit.ly/broken-link"
+                }
                 category={getCategoria(post.etiqueta)}
                 privacy={getPrivacidad(post.privacidad)}
                 likes={post.likes.length}

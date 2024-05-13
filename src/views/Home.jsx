@@ -7,6 +7,8 @@ import axios from "axios";
 import Loading from "../components/Loading";
 import { Text } from "@chakra-ui/react";
 import { getCategoria, getPrivacidad } from "../components/utils/utils";
+import MyModal from "../components/MyModal";
+import MButton from "../components/ui-elements/MButton";
 
 function Home() {
   // const postData = {
@@ -36,22 +38,31 @@ function Home() {
           }
         );
         setPosts(postsResponse.data);
-        setLoading(false);
       } catch (error) {
         console.error("Error al obtener los posts:", error);
+      } finally {
+        setLoading(false);
       }
     }
 
     fetchData();
   }, []);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const onClose = () => setIsOpen(false);
+  const onOpen = () => setIsOpen(true);
   return (
     <GeneralLayout>
+      <MButton onClick={onOpen}>Crear nuevo elemento</MButton>
+      <MyModal isOpen={isOpen} onClose={onClose} />{" "}
+      {/* Pasa isOpen y onClose como props */}
       {!loading ? (
         posts.length > 0 ? (
           posts.map((post) => (
             <MPost
               key={post.id}
               username={post.usuario}
+              avatar={null}
               category={getCategoria(post.etiqueta)}
               privacy={getPrivacidad(post.privacidad)}
               likes={post.likes.length}

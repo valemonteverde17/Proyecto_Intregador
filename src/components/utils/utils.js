@@ -1,3 +1,11 @@
+export const getAllCategories = () => {
+    return [{value: "AYUD", label: "Ayuda/Orientación"},
+            {value: "ACAD", label: "Académico"},
+            {value: "CONV", label: "Convivencia"},
+            {value: "EMPL", label: "Empleos"},
+            {value: "OTRO", label: "Otro"}];
+    }
+
 export const getCategoria = (etiqueta) => {
     switch (etiqueta) {
       case "AYUD":

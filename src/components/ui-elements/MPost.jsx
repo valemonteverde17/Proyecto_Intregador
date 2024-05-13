@@ -1,8 +1,16 @@
 import React from "react";
-import { Box, Button, Badge, IconButton } from "@chakra-ui/react";
+import { Box, Button, Badge, IconButton, Avatar } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 
-function MPost({ children, username, category, privacy, likes = 0, ...props }) {
+function MPost({
+  children,
+  username,
+  category,
+  privacy,
+  avatar,
+  likes = 0,
+  ...props
+}) {
   const userImage =
     "https://img.freepik.com/fotos-premium/cara-cara-mapache-cara-linda-animal-tranquilo-pacifico-hermoso-retrato_21085-4272.jpg";
 
@@ -36,11 +44,7 @@ function MPost({ children, username, category, privacy, likes = 0, ...props }) {
       </Box>
       <Box display="flex" alignItems="center" marginBottom="2">
         <Box marginRight="2">
-          <img
-            src={userImage}
-            alt="User Profile"
-            style={{ width: "70px", height: "68px", borderRadius: "50%" }}
-          />
+          <Avatar size="lg" src={avatar && avatar} />
         </Box>
         <Box flex="1">
           <Box fontSize="xl" fontWeight="bold">
