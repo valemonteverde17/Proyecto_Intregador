@@ -31,12 +31,22 @@ function App() {
   }, []);
 
   if (loading) {
-    return <Loading></Loading>
+    return <Loading></Loading>;
   }
 
   return (
     <>
       <Routes>
+        <Route
+          path="/"
+          element={
+            userAuth ? (
+              <Navigate to="/home" replace />
+            ) : (
+              <Navigate to="/about" replace />
+            )
+          }
+        />
         <Route
           path="/signin"
           element={userAuth ? <Navigate to="/home" replace /> : <SignIn />}

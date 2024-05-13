@@ -1,6 +1,7 @@
 import {
   Avatar,
   Box,
+  Button,
   Flex,
   HStack,
   Image,
@@ -10,6 +11,8 @@ import {
 import React from "react";
 import Navbar from "../Navbar";
 import MButton from "../ui-elements/MButton";
+import { getAuth, signOut } from "firebase/auth";
+import app from "../../../firebase-config";
 
 function ProfileLayout({
   children,
@@ -20,6 +23,16 @@ function ProfileLayout({
   noPublicaciones = 0,
   noAmigos = 0,
 }) {
+  const auth = getAuth(app);
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        console.log("Sesión cerrada exitosamente");
+      })
+      .catch((error) => {
+        console.error("Error al cerrar sesión", error);
+      });
+  };
   return (
     <Box>
       <Stack>
@@ -51,11 +64,14 @@ function ProfileLayout({
         <Text fontSize="sm" color="gray.500" px={-20}>
           {bio}
         </Text>
-        <HStack>
+        <HStack py={3}>
           <MButton>{noPublicaciones} Publicaciones</MButton>
           <MButton>{noAmigos} Amigos</MButton>
           <MButton>{grupo}</MButton>
         </HStack>
+        <MButton onClick={handleSignOut} variant={"pink"}>
+          Cerrar Sesión
+        </MButton>
       </Flex>
 
       <Box p={4} mt={4}>
