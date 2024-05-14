@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import {
   Modal,
   ModalOverlay,
@@ -10,16 +9,15 @@ import {
   ModalFooter,
   Select,
   Textarea,
-  Button,
-} from "@chakra-ui/react";
-import MButton from "./ui-elements/MButton";
+}
+  from "@chakra-ui/react";
+import MButton from "./ui-elements/MButton"; // Asegúrate de que la ruta sea correcta
 import { getAllCategories } from "./utils/utils";
 import app from "../../firebase-config";
 import { getAuth } from "firebase/auth";
 import axios from "axios";
 
 const MyModal = ({ isOpen, onClose }) => {
-  // Pasa isOpen y onClose como props
   const auth = getAuth(app);
   const [newPost, setNewPost] = useState({
     id_usuario: auth.currentUser.uid,
@@ -29,9 +27,12 @@ const MyModal = ({ isOpen, onClose }) => {
     privacidad: null,
     etiqueta: null,
   });
+
   const onCreate = () => {
     console.log(newPost);
+    createPost(newPost); // Llamar a la función createPost con el nuevo post
   };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -61,10 +62,10 @@ const MyModal = ({ isOpen, onClose }) => {
             }
           >
             {getAllCategories().map((cat) => (
-              <option value={cat.value}>{cat.label}</option>
+              <option key={cat.value} value={cat.value}>{cat.label}</option>
             ))}
+
           </Select>
-          {/* Image picker */}
         </ModalBody>
         <ModalFooter>
           <MButton variant="blue" mr={3} onClick={onClose}>
@@ -76,4 +77,26 @@ const MyModal = ({ isOpen, onClose }) => {
     </Modal>
   );
 };
+
 export default MyModal;
+
+async function createPost(newPost) {
+  try {
+    const apiKeyResponse = await axios.get(
+      "http://localhost:8000/generate-api-key/",
+      { headers: { "API-Key": "mango" } }
+    );
+    const apiKey = apiKeyResponse.data.api_key;
+    await axios.post(
+      "http://localhost:8000/api/muro/",
+      newPost,
+      {
+        headers: { Authorization: `Api-Key ${apiKey}` } // Corrección en la sintaxis de template string
+      }
+    );
+
+    console.log("Post creado exitosamente");
+  } catch (error) {
+    console.error("Error al crear el post:", error);
+  }
+}
