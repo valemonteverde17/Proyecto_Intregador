@@ -96,6 +96,7 @@ async function createPost(newPost) {
     );
 
     console.log("Post creado exitosamente");
+    onClose();
   } catch (error) {
     console.error("Error al crear el post:", error);
   }

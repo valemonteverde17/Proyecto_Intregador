@@ -37,14 +37,19 @@ function Home() {
             headers: { Authorization: `Api-Key ${apiKey}` },
           }
         );
-        setPosts(postsResponse.data);
+        const sortedPosts = postsResponse.data.sort((a, b) => {
+          const fechaA = new Date(a.fecha_publicacion);
+          const fechaB = new Date(b.fecha_publicacion);
+          return fechaB - fechaA; // Orden descendente
+        });
+        setPosts(sortedPosts);
       } catch (error) {
         console.error("Error al obtener los posts:", error);
       } finally {
         setLoading(false);
       }
     }
-
+  
     fetchData();
   }, []);
   const [isOpen, setIsOpen] = useState(false);
