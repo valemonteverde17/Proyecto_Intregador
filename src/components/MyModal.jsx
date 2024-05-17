@@ -9,8 +9,8 @@ import {
   ModalFooter,
   Select,
   Textarea,
-}
-  from "@chakra-ui/react";
+  Button,
+} from "@chakra-ui/react";
 import MButton from "./ui-elements/MButton"; // Asegúrate de que la ruta sea correcta
 import { getAllCategories } from "./utils/utils";
 import app from "../../firebase-config";
@@ -19,6 +19,7 @@ import axios from "axios";
 
 const MyModal = ({ isOpen, onClose }) => {
   const auth = getAuth(app);
+  const [loading, setLoading] = useState(false);
   const [newPost, setNewPost] = useState({
     id_usuario: auth.currentUser.uid,
     usuario: auth.currentUser.email,
@@ -29,9 +30,28 @@ const MyModal = ({ isOpen, onClose }) => {
   });
 
   const onCreate = () => {
-    console.log(newPost);
     createPost(newPost); // Llamar a la función createPost con el nuevo post
   };
+  async function createPost(newPost) {
+    setLoading(true);
+    try {
+      const apiKeyResponse = await axios.get(
+        "http://localhost:8000/generate-api-key/",
+        { headers: { "API-Key": "mango" } }
+      );
+      const apiKey = apiKeyResponse.data.api_key;
+      await axios.post("http://localhost:8000/api/muro/", newPost, {
+        headers: { Authorization: `Api-Key ${apiKey}` }, // Corrección en la sintaxis de template string
+      });
+
+      console.log("Post creado exitosamente");
+      onClose();
+    } catch (error) {
+      console.error("Error al crear el post:", error);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -62,16 +82,19 @@ const MyModal = ({ isOpen, onClose }) => {
             }
           >
             {getAllCategories().map((cat) => (
-              <option key={cat.value} value={cat.value}>{cat.label}</option>
+              <option key={cat.value} value={cat.value}>
+                {cat.label}
+              </option>
             ))}
-
           </Select>
         </ModalBody>
         <ModalFooter>
           <MButton variant="blue" mr={3} onClick={onClose}>
             Cerrar
           </MButton>
-          <MButton onClick={onCreate}>Guardar</MButton>
+          <MButton onClick={onCreate} isLoading={loading}>
+            Guardar
+          </MButton>
         </ModalFooter>
       </ModalContent>
     </Modal>
@@ -79,25 +102,3 @@ const MyModal = ({ isOpen, onClose }) => {
 };
 
 export default MyModal;
-
-async function createPost(newPost) {
-  try {
-    const apiKeyResponse = await axios.get(
-      "http://localhost:8000/generate-api-key/",
-      { headers: { "API-Key": "mango" } }
-    );
-    const apiKey = apiKeyResponse.data.api_key;
-    await axios.post(
-      "http://localhost:8000/api/muro/",
-      newPost,
-      {
-        headers: { Authorization: `Api-Key ${apiKey}` } // Corrección en la sintaxis de template string
-      }
-    );
-
-    console.log("Post creado exitosamente");
-    onClose();
-  } catch (error) {
-    console.error("Error al crear el post:", error);
-  }
-}

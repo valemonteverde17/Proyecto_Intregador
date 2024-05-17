@@ -9,6 +9,7 @@ import { Text } from "@chakra-ui/react";
 import { getCategoria, getPrivacidad } from "../components/utils/utils";
 import MyModal from "../components/MyModal";
 import MButton from "../components/ui-elements/MButton";
+import { DateTime } from "luxon";
 
 function Home() {
   // const postData = {
@@ -38,9 +39,9 @@ function Home() {
           }
         );
         const sortedPosts = postsResponse.data.sort((a, b) => {
-          const fechaA = new Date(a.fecha_publicacion);
-          const fechaB = new Date(b.fecha_publicacion);
-          return fechaB - fechaA; // Orden descendente
+          const fechaA = DateTime.fromISO(a.fecha_publicacion); //es fromISO porque el formato es tipo "2024-09-23"
+          const fechaB = DateTime.fromISO(b.fecha_publicacion);
+          return fechaB.diff(fechaA).as("milliseconds");
         });
         setPosts(sortedPosts);
       } catch (error) {
@@ -49,7 +50,7 @@ function Home() {
         setLoading(false);
       }
     }
-  
+
     fetchData();
   }, []);
   const [isOpen, setIsOpen] = useState(false);
