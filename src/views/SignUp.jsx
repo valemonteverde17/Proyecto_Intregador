@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import app from "../../firebase-config";
 import RootLayout from "../components/layouts/RootLayout";
+import AuthCard from "../components/ui-elements/AuthCard";
 
 function SignUp() {
   const [email, setEmail] = useState("");
@@ -51,53 +52,54 @@ function SignUp() {
 
   return (
     <RootLayout>
-      <Flex height="92vh" align={"center"} justifyContent="center">
+      <Flex align={"center"} justifyContent="center">
         <Box
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          border="2px"
-          borderColor="gray.200"
-          p={4}
-          rounded="md"
-          w={"30%"}
+          px={60}
+          backgroundSize={"cover"}
+          backgroundPosition={"center"}
+          display={"flex"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          textAlign="center"
         >
-          <Text fontSize="5xl" fontWeight="extrabold" mb={4}>
-            {" "}
-            Registro
-          </Text>
-          <Input
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            mt={5}
-          />
-          <Input
-            placeholder="Contraseña"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            mt={5}
-          />
-          <Box>
-            <Button
-              onClick={handleSignUp}
-              borderRadius={30}
-              bgColor="#FF3F00AA"
-              m={5}
-            >
-              Registrarse
-            </Button>
-            <Button
-              as={NavLink}
-              borderRadius={"30px"}
-              bg={"null"}
-              to={"/signin"}
-              m={5}
-            >
-              Iniciar Sesión
-            </Button>
-          </Box>
+          <AuthCard>
+            <Text fontSize="5xl" fontWeight="extrabold" mb={4}>
+              {" "}
+              Registro
+            </Text>
+            <Input
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              mt={5}
+            />
+            <Input
+              placeholder="Contraseña"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              mt={5}
+            />
+            <Box>
+              <Button
+                onClick={handleSignUp}
+                borderRadius={30}
+                bgColor="#FF3F00AA"
+                m={5}
+              >
+                Registrarse
+              </Button>
+              <Button
+                as={NavLink}
+                borderRadius={"30px"}
+                bg={"null"}
+                to={"/signin"}
+                m={5}
+              >
+                Iniciar Sesión
+              </Button>
+            </Box>
+          </AuthCard>
         </Box>
       </Flex>
     </RootLayout>
