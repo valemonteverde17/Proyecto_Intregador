@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import app from "../../firebase-config";
 import RootLayout from "../components/layouts/RootLayout";
 import AuthCard from "../components/ui-elements/AuthCard";
+import MIconButton from "../components/ui-elements/MIconButton";
 
 function SignUp() {
   const [email, setEmail] = useState("");
@@ -53,6 +54,13 @@ function SignUp() {
   return (
     <RootLayout>
       <Flex align={"center"} justifyContent="center">
+        <MIconButton
+          variant="editar"
+          onClick={() => {
+            console.log("hola");
+          }}
+          color="blue"
+        />
         <Box
           px={60}
           backgroundSize={"cover"}
